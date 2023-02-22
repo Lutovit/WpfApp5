@@ -1,0 +1,78 @@
+﻿<Window x:Class="WpfApp5.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"  
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         Background="{DynamicResource MaterialDesignPaper}"
+         FontFamily="{DynamicResource MaterialDesignFont}"
+
+        xmlns:local="clr-namespace:WpfApp5"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+    </Window.Resources>
+    <Border Margin="5,5,5,5" BorderThickness="5">
+        <Grid ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <DataGrid Grid.Column="0" Grid.Row="0" AutoGenerateColumns="True" ItemsSource="{Binding Cars}"  SelectedItem="{Binding SelectedCar}"></DataGrid>
+
+            <Button Grid.Column="0" Grid.Row="1" Content="Add" FontSize="20" Command="{Binding AddCommand}" Cursor="Hand" HorizontalAlignment="Left" Margin="0,9,0,9" Width="150"></Button>
+            <Button Grid.Column="0" Grid.Row="1" Content="Remove" FontSize="20" Command="{Binding RemoveCommand}" CommandParameter="{Binding SelectedCar}" Cursor="Hand" HorizontalAlignment="Right" Margin="0,9,0,9" Width="150"></Button>
+            <Button Grid.Column="1" Grid.Row="1" Content="Close" FontSize="20"  Command="{Binding CloseCommand}" Cursor="Hand"></Button>
+
+            <Grid x:Name="SelectedCarGrid" Grid.Column="1" Grid.Row="0" DataContext="{Binding SelectedCar}" VerticalAlignment="Stretch" ShowGridLines="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Selected Element:" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+
+                <TextBlock Text="ID:" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"></TextBlock>
+                <TextBox x:Name="IdTextBox" Text="{Binding Id,  UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"></TextBox>
+
+                <TextBlock Text="Name:" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2"></TextBlock>
+                <TextBox x:Name="NameTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"></TextBox>
+
+                <TextBlock Text="Price:" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3"></TextBlock>
+                <TextBox x:Name="PriceTextBox" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"></TextBox>
+
+                <TextBlock Text="Year:" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="0" Grid.Row="4"></TextBlock>
+                <TextBox x:Name="YearTextBox" Text="{Binding Year, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4"></TextBox>
+
+            </Grid>
+        </Grid>
+
+
+
+
+    </Border>
+
+</Window>
